@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-md-12">
+        <h2>📉 Отчёт: Потребность в сырье (SQL View)</h2>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body bg-light">
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-md-6">
+                <label class="form-label">Выберите продукцию:</label>
+                <select name="product_id" class="form-select">
+                    <option value="">-- Не выбрано --</option>
+                    {% for p in products %}
+                    <option value="{{ p.id }}" {% if p.id==selected_product_id %}selected{% endif %}>{{ p.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Количество единиц для производства:</label>
+                <input type="number" name="n_units" value="{{ n_units|default:1 }}" class="form-control" min="1">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Показать</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if selected_product_id %}
+<div class="card">
+    <div class="card-header">
+        Расчет потребности
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Сырьё (ID)</th>
+                    <th>Наименование сырья</th>
+                    <th>Норма на 1 ед.</th>
+                    <th>Итого нужно (на {{ n_units }} ед.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                <tr>
+                    <td>{{ row.raw_id }}</td>
+                    <td>{{ row.raw_name }}</td>
+                    <td>{{ row.ingredient_qty }}</td>
+                    <td class="fw-bold text-danger">{{ row.needed_qty }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted">Нет состава для этой продукции.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

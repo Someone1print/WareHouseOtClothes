@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center mb-4">
+        <h1>📦 Меню управления складом</h1>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Справочники -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header bg-primary text-white">📘 Справочники</div>
+            <div class="list-group list-group-flush">
+                <a href="{% url 'unit_list' %}" class="list-group-item list-group-item-action">📏 Единицы измерения</a>
+                <a href="{% url 'position_list' %}" class="list-group-item list-group-item-action">👔 Должности</a>
+                <a href="{% url 'employee_list' %}" class="list-group-item list-group-item-action">👥 Сотрудники</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Склад и Продукция -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header bg-success text-white">🏭 Склад и Продукция</div>
+            <div class="list-group list-group-flush">
+                <a href="{% url 'raw_material_list' %}" class="list-group-item list-group-item-action">🧶 Сырьё</a>
+                <a href="{% url 'finished_product_list' %}" class="list-group-item list-group-item-action">👕 Готовая
+                    продукция</a>
+                <a href="{% url 'ingredient_list' %}" class="list-group-item list-group-item-action">📝 Ингредиенты
+                    (Состав)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Операции -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header bg-danger text-white">⚡ Операции</div>
+            <div class="list-group list-group-flush">
+                <a href="{% url 'budget_list' %}" class="list-group-item list-group-item-action">💰 Бюджет</a>
+                <a href="{% url 'purchase_create' %}" class="list-group-item list-group-item-action">🛒 Закупка
+                    сырья</a>
+                <a href="{% url 'production_list' %}" class="list-group-item list-group-item-action">⚙️ Производство</a>
+                <a href="{% url 'sale_create' %}" class="list-group-item list-group-item-action">💸 Продажа
+                    продукции</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Отчеты (SQL Views) -->
+    <div class="col-md-12">
+        <div class="card h-100 border-info">
+            <div class="card-header bg-info text-white">📊 Отчёты (SQL Views)</div>
+            <div class="card-body">
+                <div class="d-flex gap-3">
+                    <a href="{% url 'view_raw_stock' %}" class="btn btn-outline-info">🧶 Остатки сырья</a>
+                    <a href="{% url 'view_product_stock' %}" class="btn btn-outline-info">👕 Остатки продукции</a>
+                    <a href="{% url 'view_materials_needed' %}" class="btn btn-outline-info">📉 Потребность в сырье</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

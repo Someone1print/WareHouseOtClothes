@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h2>💰 Бюджет</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title">Текущий бюджет: <span class="text-success">{{ budget.amount }}</span> KGS</h4>
+        <hr>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {% if field.errors %}
+                {{ field|add_class:"form-control is-invalid" }}
+                <div class="invalid-feedback">
+                    {{ field.errors|first }}
+                </div>
+                {% else %}
+                {{ field|add_class:"form-control" }}
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary mt-3">Обновить бюджет</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

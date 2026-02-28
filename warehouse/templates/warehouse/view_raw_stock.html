@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-md-8">
+        <h2>📦 Отчёт: Остаток сырья (SQL View)</h2>
+    </div>
+    <div class="col-md-4">
+        <form method="get" class="d-flex">
+            <input type="text" name="search" class="form-control me-2" placeholder="Поиск по названию..."
+                value="{{ search|default_if_none:'' }}">
+            <button type="submit" class="btn btn-primary">Искать</button>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Название сырья</th>
+                    <th>Закуплено (всего)</th>
+                    <th>Израсходовано (всего)</th>
+                    <th>Остаток на складе</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                <tr>
+                    <td>{{ row.raw_id }}</td>
+                    <td>{{ row.raw_name }}</td>
+                    <td class="text-success">{{ row.total_purchased|default:0 }}</td>
+                    <td class="text-danger">{{ row.total_used|default:0 }}</td>
+                    <td class="fw-bold">{{ row.stock_qty|default:0 }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Данных нет.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

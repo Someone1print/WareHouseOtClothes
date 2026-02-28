@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h2>📥 Закупка сырья (Вызов хранимой процедуры)</h2>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {% if field.errors %}
+                        {{ field|add_class:"form-control is-invalid" }}
+                        <div class="invalid-feedback">
+                            {{ field.errors|first }}
+                        </div>
+                        {% else %}
+                        {{ field|add_class:"form-control" }}
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary mt-3 w-100">Закупить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header">История закупок</div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Сырьё</th>
+                            <th>Кол-во</th>
+                            <th>Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in purchases|slice:":10" %}
+                        <tr>
+                            <td>{{ p.date|date:"d.m.Y H:i" }}</td>
+                            <td>{{ p.raw_material.name }}</td>
+                            <td>{{ p.quantity }}</td>
+                            <td>{{ p.amount }} KGS</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">Нет истории</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

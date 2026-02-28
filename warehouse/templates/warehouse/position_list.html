@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>👔 Должности</h2>
+    <a href="{% url 'position_create' %}" class="btn btn-success">➕ Добавить</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th style="width: 200px;">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.title }}</td>
+                    <td>
+                        <a href="{% url 'position_update' pk=item.pk %}" class="btn btn-sm btn-primary">✏️</a>
+                        <a href="{% url 'position_delete' pk=item.pk %}" class="btn btn-sm btn-danger">🗑️</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" class="text-center text-muted">Список пуст.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
