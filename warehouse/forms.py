@@ -1,5 +1,5 @@
 from django import forms
-from .models import Unit, Position, Employee, RawMaterial, FinishedProduct, Ingredient, Budget, ProductSale, Production
+from .models import Unit, Position, Employee, RawMaterial, FinishedProduct, Ingredient, Budget, ProductSale, Production, SalaryPayment, BusinessLoan
 
 class UnitForm(forms.ModelForm):
     class Meta:
@@ -39,16 +39,32 @@ class BudgetForm(forms.ModelForm):
 class ProductSaleForm(forms.ModelForm):
     class Meta:
         model = ProductSale
-        exclude = ['date']
+        fields = ['product', 'quantity']
 
 class ProductionForm(forms.ModelForm):
     class Meta:
         model = Production
-        exclude = ['date']
+        exclude = ['date', 'employee']
 
 # Form for the stored procedure call (not a ModelForm)
 class RawPurchaseForm(forms.Form):
     raw_material = forms.ModelChoiceField(queryset=RawMaterial.objects.all(), label="Сырьё")
     quantity = forms.FloatField(label="Количество")
     amount = forms.FloatField(label="Сумма закупки")
-    employee = forms.ModelChoiceField(queryset=Employee.objects.all(), label="Сотрудник")
+
+class SalaryPaymentForm(forms.ModelForm):
+    class Meta:
+        model = SalaryPayment
+        exclude = ['date']
+
+class BusinessLoanForm(forms.ModelForm):
+    class Meta:
+        model = BusinessLoan
+        exclude = ['date_taken']
+
+from .models import ProductionRequest
+
+class ProductionRequestForm(forms.ModelForm):
+    class Meta:
+        model = ProductionRequest
+        fields = ['applicant_name', 'product', 'quantity']

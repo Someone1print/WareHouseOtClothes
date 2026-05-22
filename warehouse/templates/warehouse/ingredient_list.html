@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ item.product.name }}</td>
                     <td>{{ item.raw_material.name }}</td>
-                    <td>{{ item.quantity }} {{ item.raw_material.unit.name }}</td>
+                    <td>{{ item.quantity|floatformat:"2g" }} {{ item.raw_material.unit.name }}</td>
                     <td>
                         <a href="{% url 'ingredient_update' pk=item.pk %}" class="btn btn-sm btn-primary">✏️</a>
                         <a href="{% url 'ingredient_delete' pk=item.pk %}" class="btn btn-sm btn-danger">🗑️</a>

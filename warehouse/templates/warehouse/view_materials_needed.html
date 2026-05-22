@@ -15,7 +15,7 @@
                 <select name="product_id" class="form-select">
                     <option value="">-- Не выбрано --</option>
                     {% for p in products %}
-                    <option value="{{ p.id }}" {% if p.id==selected_product_id %}selected{% endif %}>{{ p.name }}
+                    <option value="{{ p.id }}" {% if p.id == selected_product_id %}selected{% endif %}>{{ p.name }}
                     </option>
                     {% endfor %}
                 </select>
@@ -32,35 +32,52 @@
 </div>
 
 {% if selected_product_id %}
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-header">
         Расчет потребности
     </div>
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>Сырьё (ID)</th>
-                    <th>Наименование сырья</th>
-                    <th>Норма на 1 ед.</th>
-                    <th>Итого нужно (на {{ n_units }} ед.)</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in results %}
-                <tr>
-                    <td>{{ row.raw_id }}</td>
-                    <td>{{ row.raw_name }}</td>
-                    <td>{{ row.ingredient_qty }}</td>
-                    <td class="fw-bold text-danger">{{ row.needed_qty }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4" class="text-center text-muted">Нет состава для этой продукции.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>ID сырья</th>
+                        <th>Наименование сырья</th>
+                        <th class="text-end">Норма на 1 ед.</th>
+                        <th class="text-end">Нужно (на {{ n_units }} ед.)</th>
+                        <th class="text-end">В наличии (на складе)</th>
+                        <th class="text-center">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in results %}
+                    <tr>
+                        <td class="text-muted fw-bold">#{{ row.raw_id }}</td>
+                        <td class="fw-medium">{{ row.raw_name }}</td>
+                        <td class="text-end text-muted">{{ row.ingredient_qty|floatformat:"2g" }}</td>
+                        
+                        <td class="text-end fw-bold {% if row.is_enough %}text-success{% else %}text-danger{% endif %}">
+                            {{ row.needed_qty|floatformat:"2g" }}
+                        </td>
+                        
+                        <td class="text-end fw-bold text-muted">{{ row.available_qty|floatformat:"2g" }}</td>
+                        
+                        <td class="text-center">
+                            {% if row.is_enough %}
+                                <span class="badge bg-success">🟢 Хватает</span>
+                            {% else %}
+                                <span class="badge bg-danger">🔴 Не хватает</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">Нет состава для этой продукции.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 {% endif %}

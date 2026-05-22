@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1072" viewBox="0 0 720 1072" font-family="Segoe UI, sans-serif" font-size="13">
+<rect width="720" height="1072" fill="#FFFFFF" stroke="#A0A0A0"/>
+<rect x="0" y="0" width="720" height="30" fill="#F0F0F0" stroke="#A0A0A0"/>
+<text x="10" y="20" font-weight="bold" fill="#000000">Object Explorer</text>
+<line x1="0" y1="30" x2="720" y2="30" stroke="#A0A0A0"/>
+<ellipse cx="17" cy="46" rx="7" ry="3" fill="#5B9BD5" stroke="#2E75B6"/>
+<rect x="10" y="46" width="14" height="6" fill="#5B9BD5" stroke="#2E75B6"/>
+<ellipse cx="17" cy="52" rx="7" ry="3" fill="#5B9BD5" stroke="#2E75B6"/>
+<text x="32" y="50" fill="#000000">warehouseofclothes (SQL Server 17.x.x.x - sa)</text>
+<rect x="30" y="62" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="30" y="60" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="52" y="72" fill="#000000">Databases</text>
+<rect x="50" y="84" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="50" y="82" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="72" y="94" fill="#000000">System Databases</text>
+<ellipse cx="57" cy="112" rx="7" ry="3" fill="#5B9BD5" stroke="#2E75B6"/>
+<rect x="50" y="112" width="14" height="6" fill="#5B9BD5" stroke="#2E75B6"/>
+<ellipse cx="57" cy="118" rx="7" ry="3" fill="#5B9BD5" stroke="#2E75B6"/>
+<text x="72" y="116" fill="#000000">warehouseofclothes</text>
+<rect x="70" y="128" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="70" y="126" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="92" y="138" fill="#000000">Database Diagrams</text>
+<rect x="70" y="150" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="70" y="148" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="92" y="160" fill="#000000">Tables</text>
+<rect x="90" y="172" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="90" y="170" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="112" y="182" fill="#000000">System Tables</text>
+<rect x="90" y="194" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="90" y="192" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="112" y="204" fill="#000000">FileTables</text>
+<rect x="90" y="216" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="90" y="214" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="112" y="226" fill="#000000">External Tables</text>
+<rect x="90" y="238" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="90" y="236" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="112" y="248" fill="#000000">Graph Tables</text>
+<rect x="90" y="260" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="263" x2="104" y2="263" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="266" x2="104" y2="266" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="270" fill="#000000">dbo.auth_group</text>
+<rect x="90" y="282" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="285" x2="104" y2="285" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="288" x2="104" y2="288" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="292" fill="#000000">dbo.auth_group_permissions</text>
+<rect x="90" y="304" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="307" x2="104" y2="307" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="310" x2="104" y2="310" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="314" fill="#000000">dbo.auth_permission</text>
+<rect x="90" y="326" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="329" x2="104" y2="329" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="332" x2="104" y2="332" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="336" fill="#000000">dbo.auth_user</text>
+<rect x="90" y="348" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="351" x2="104" y2="351" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="354" x2="104" y2="354" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="358" fill="#000000">dbo.auth_user_groups</text>
+<rect x="90" y="370" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="373" x2="104" y2="373" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="376" x2="104" y2="376" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="380" fill="#000000">dbo.auth_user_user_permissions</text>
+<rect x="90" y="392" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="395" x2="104" y2="395" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="398" x2="104" y2="398" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="402" fill="#000000">dbo.django_admin_log</text>
+<rect x="90" y="414" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="417" x2="104" y2="417" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="420" x2="104" y2="420" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="424" fill="#000000">dbo.django_content_type</text>
+<rect x="90" y="436" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="439" x2="104" y2="439" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="442" x2="104" y2="442" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="446" fill="#000000">dbo.django_migrations</text>
+<rect x="90" y="458" width="14" height="11" fill="#D9D9D9" stroke="#7F6000"/>
+<line x1="90" y1="461" x2="104" y2="461" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="464" x2="104" y2="464" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="468" fill="#000000">dbo.django_session</text>
+<rect x="90" y="480" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="483" x2="104" y2="483" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="486" x2="104" y2="486" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="490" fill="#000000">dbo.warehouse_budget</text>
+<rect x="90" y="502" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="505" x2="104" y2="505" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="508" x2="104" y2="508" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="512" fill="#000000">dbo.warehouse_businessloan</text>
+<rect x="90" y="524" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="527" x2="104" y2="527" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="530" x2="104" y2="530" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="534" fill="#000000">dbo.warehouse_employee</text>
+<rect x="90" y="546" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="549" x2="104" y2="549" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="552" x2="104" y2="552" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="556" fill="#000000">dbo.warehouse_finishedproduct</text>
+<rect x="90" y="568" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="571" x2="104" y2="571" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="574" x2="104" y2="574" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="578" fill="#000000">dbo.warehouse_ingredient</text>
+<rect x="90" y="590" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="593" x2="104" y2="593" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="596" x2="104" y2="596" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="600" fill="#000000">dbo.warehouse_position</text>
+<rect x="90" y="612" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="615" x2="104" y2="615" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="618" x2="104" y2="618" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="622" fill="#000000">dbo.warehouse_production</text>
+<rect x="90" y="634" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="637" x2="104" y2="637" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="640" x2="104" y2="640" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="644" fill="#000000">dbo.warehouse_productionrequest</text>
+<rect x="90" y="656" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="659" x2="104" y2="659" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="662" x2="104" y2="662" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="666" fill="#000000">dbo.warehouse_productsale</text>
+<rect x="90" y="678" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="681" x2="104" y2="681" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="684" x2="104" y2="684" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="688" fill="#000000">dbo.warehouse_rawmaterial</text>
+<rect x="90" y="700" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="703" x2="104" y2="703" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="706" x2="104" y2="706" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="710" fill="#000000">dbo.warehouse_rawpurchase</text>
+<rect x="90" y="722" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="725" x2="104" y2="725" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="728" x2="104" y2="728" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="732" fill="#000000">dbo.warehouse_salarypayment</text>
+<rect x="90" y="744" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="747" x2="104" y2="747" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="750" x2="104" y2="750" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="754" fill="#000000">dbo.warehouse_unit</text>
+<rect x="90" y="766" width="14" height="11" fill="#FFD966" stroke="#7F6000"/>
+<line x1="90" y1="769" x2="104" y2="769" stroke="#7F6000" stroke-width="0.5"/>
+<line x1="90" y1="772" x2="104" y2="772" stroke="#7F6000" stroke-width="0.5"/>
+<text x="112" y="776" fill="#000000">dbo.warehouse_userprofile</text>
+<rect x="70" y="788" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="70" y="786" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="92" y="798" fill="#000000">Views</text>
+<rect x="90" y="810" width="14" height="11" fill="#A9D08E" stroke="#375623"/>
+<line x1="92" y1="816" x2="102" y2="816" stroke="#375623" stroke-width="0.5"/>
+<text x="112" y="820" fill="#000000">dbo.v_finished_product_stock</text>
+<rect x="90" y="832" width="14" height="11" fill="#A9D08E" stroke="#375623"/>
+<line x1="92" y1="838" x2="102" y2="838" stroke="#375623" stroke-width="0.5"/>
+<text x="112" y="842" fill="#000000">dbo.v_materials_needed_for_production</text>
+<rect x="90" y="854" width="14" height="11" fill="#A9D08E" stroke="#375623"/>
+<line x1="92" y1="860" x2="102" y2="860" stroke="#375623" stroke-width="0.5"/>
+<text x="112" y="864" fill="#000000">dbo.v_raw_material_stock</text>
+<rect x="70" y="876" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="70" y="874" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="92" y="886" fill="#000000">Synonyms</text>
+<rect x="70" y="898" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="70" y="896" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="92" y="908" fill="#000000">Programmability</text>
+<rect x="90" y="920" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="90" y="918" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="112" y="930" fill="#000000">Stored Procedures</text>
+<circle cx="117" cy="948" r="6" fill="#9DC3E6" stroke="#2E75B6"/>
+<text x="114" y="951" font-size="9" fill="#1F3864">P</text>
+<text x="132" y="952" fill="#000000">dbo.sp_check_budget</text>
+<circle cx="117" cy="970" r="6" fill="#9DC3E6" stroke="#2E75B6"/>
+<text x="114" y="973" font-size="9" fill="#1F3864">P</text>
+<text x="132" y="974" fill="#000000">dbo.sp_create_purchase</text>
+<rect x="90" y="986" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="90" y="984" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="112" y="996" fill="#000000">Functions</text>
+<rect x="90" y="1008" width="14" height="11" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<rect x="90" y="1006" width="6" height="3" fill="#F0DC82" stroke="#8A6914" stroke-width="0.5"/>
+<text x="112" y="1018" fill="#000000">Database Triggers</text>
+<polygon points="110,1030 124,1030 117,1042" fill="#F4B084" stroke="#A0522D"/>
+<text x="132" y="1040" fill="#000000">dbo.trg_after_purchase</text>
+</svg>

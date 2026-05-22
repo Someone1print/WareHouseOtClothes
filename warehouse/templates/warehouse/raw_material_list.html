@@ -14,6 +14,7 @@
                     <th>Наименование</th>
                     <th>Ед. изм.</th>
                     <th>Остаток</th>
+                    <th>Мин. цена</th>
                     <th>Общ. стоимость</th>
                     <th>Действия</th>
                 </tr>
@@ -23,8 +24,9 @@
                 <tr>
                     <td>{{ item.name }}</td>
                     <td>{{ item.unit }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.amount }} KGS</td>
+                    <td>{{ item.quantity|floatformat:"2g" }}</td>
+                    <td>{{ item.min_price|floatformat:"2g" }} KGS</td>
+                    <td>{{ item.amount|floatformat:"2g" }} KGS</td>
                     <td>
                         <a href="{% url 'raw_material_update' pk=item.pk %}" class="btn btn-sm btn-primary">✏️</a>
                         <a href="{% url 'raw_material_delete' pk=item.pk %}" class="btn btn-sm btn-danger">🗑️</a>

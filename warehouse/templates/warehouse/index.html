@@ -2,62 +2,108 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-12 text-center mb-4">
-        <h1>📦 Меню управления складом</h1>
+    <div class="col-md-12 text-center mb-5 mt-3">
+        <h1 class="display-5 fw-bold text-dark">📦 Панель управления складом</h1>
+        <p class="lead text-muted">
+            {% if current_employee %}
+                Добро пожаловать, <strong>{{ current_employee.full_name }}</strong>
+                ({{ current_employee.position.title }})
+            {% else %}
+                Управление процессами, производством и финансами
+            {% endif %}
+        </p>
     </div>
 </div>
 
 <div class="row g-4">
-    <!-- Справочники -->
+    {% if is_director %}
+    <!-- Справочники - только директор -->
     <div class="col-md-4">
-        <div class="card h-100">
+        <div class="card h-100 border-primary">
             <div class="card-header bg-primary text-white">📘 Справочники</div>
             <div class="list-group list-group-flush">
                 <a href="{% url 'unit_list' %}" class="list-group-item list-group-item-action">📏 Единицы измерения</a>
                 <a href="{% url 'position_list' %}" class="list-group-item list-group-item-action">👔 Должности</a>
                 <a href="{% url 'employee_list' %}" class="list-group-item list-group-item-action">👥 Сотрудники</a>
+                <a href="{% url 'account_list' %}" class="list-group-item list-group-item-action">👤 Аккаунты</a>
             </div>
         </div>
     </div>
+    {% endif %}
 
+    {% if is_director or can_warehouse or can_sales or can_production %}
     <!-- Склад и Продукция -->
     <div class="col-md-4">
-        <div class="card h-100">
+        <div class="card h-100 border-success">
             <div class="card-header bg-success text-white">🏭 Склад и Продукция</div>
             <div class="list-group list-group-flush">
+                {% if is_director or can_warehouse %}
                 <a href="{% url 'raw_material_list' %}" class="list-group-item list-group-item-action">🧶 Сырьё</a>
+                {% endif %}
+                {% if is_director or can_sales or can_production %}
                 <a href="{% url 'finished_product_list' %}" class="list-group-item list-group-item-action">👕 Готовая
                     продукция</a>
+                {% endif %}
+                {% if is_director or can_production %}
                 <a href="{% url 'ingredient_list' %}" class="list-group-item list-group-item-action">📝 Ингредиенты
                     (Состав)</a>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 
+    {% if is_director or can_warehouse or can_production or can_sales or can_accountant %}
     <!-- Операции -->
     <div class="col-md-4">
-        <div class="card h-100">
+        <div class="card h-100 border-danger">
             <div class="card-header bg-danger text-white">⚡ Операции</div>
             <div class="list-group list-group-flush">
+                {% if is_director or can_accountant %}
                 <a href="{% url 'budget_list' %}" class="list-group-item list-group-item-action">💰 Бюджет</a>
+                {% endif %}
+                {% if is_director or can_warehouse %}
                 <a href="{% url 'purchase_create' %}" class="list-group-item list-group-item-action">🛒 Закупка
                     сырья</a>
+                {% endif %}
+                {% if is_director or can_production %}
                 <a href="{% url 'production_list' %}" class="list-group-item list-group-item-action">⚙️ Производство</a>
-                <a href="{% url 'sale_create' %}" class="list-group-item list-group-item-action">💸 Продажа
+                {% endif %}
+                {% if is_director or can_sales %}
+                <a href="{% url 'sale_create' %}" class="list-group-item list-group-item-action">🛍️ Продажа
                     продукции</a>
+                {% endif %}
+                {% if is_director or can_production %}
+                <a href="{% url 'production_request_list' %}" class="list-group-item list-group-item-action">📋 Заявки на производство</a>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 
-    <!-- Отчеты (SQL Views) -->
-    <div class="col-md-12">
-        <div class="card h-100 border-info">
-            <div class="card-header bg-info text-white">📊 Отчёты (SQL Views)</div>
-            <div class="card-body">
-                <div class="d-flex gap-3">
-                    <a href="{% url 'view_raw_stock' %}" class="btn btn-outline-info">🧶 Остатки сырья</a>
-                    <a href="{% url 'view_product_stock' %}" class="btn btn-outline-info">👕 Остатки продукции</a>
-                    <a href="{% url 'view_materials_needed' %}" class="btn btn-outline-info">📉 Потребность в сырье</a>
+    <!-- Отчеты -->
+    <div class="col-md-12 mt-5">
+        <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);">
+            <div class="card-header bg-dark text-white border-0">📊 Отчёты (Аналитика)</div>
+            <div class="card-body text-center p-4">
+                <div class="d-flex flex-wrap gap-4 justify-content-center mt-2">
+                    {% if is_director or can_accountant %}
+                    <a href="{% url 'analytics_dashboard' %}"
+                        class="btn btn-outline-primary btn-lg px-4 rounded-pill">📈
+                        Панель Аналитики</a>
+                    {% endif %}
+                    {% if is_director or can_warehouse or can_production or can_accountant %}
+                    <a href="{% url 'view_raw_stock' %}" class="btn btn-outline-dark btn-lg px-4 rounded-pill">🧶
+                        Остатки сырья</a>
+                    {% endif %}
+                    {% if is_director or can_sales or can_production or can_accountant %}
+                    <a href="{% url 'view_product_stock' %}" class="btn btn-outline-dark btn-lg px-4 rounded-pill">👕
+                        Остатки продукции</a>
+                    {% endif %}
+                    {% if is_director or can_warehouse or can_production %}
+                    <a href="{% url 'view_materials_needed' %}" class="btn btn-outline-dark btn-lg px-4 rounded-pill">📉
+                        Потребность в сырье</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

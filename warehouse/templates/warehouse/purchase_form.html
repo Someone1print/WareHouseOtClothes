@@ -21,6 +21,14 @@
                         {% else %}
                         {{ field|add_class:"form-control" }}
                         {% endif %}
+                        
+                        {% if field.name == 'amount' %}
+                        <div id="price-suggestion" class="mt-2" style="display: none;">
+                            <span class="badge bg-info text-dark">
+                                💡 Рекомендуемая сумма: <span id="suggested-value">0</span> KGS
+                            </span>
+                        </div>
+                        {% endif %}
                     </div>
                     {% endfor %}
                     <button type="submit" class="btn btn-primary mt-3 w-100">Закупить</button>
@@ -47,8 +55,8 @@
                         <tr>
                             <td>{{ p.date|date:"d.m.Y H:i" }}</td>
                             <td>{{ p.raw_material.name }}</td>
-                            <td>{{ p.quantity }}</td>
-                            <td>{{ p.amount }} KGS</td>
+                            <td>{{ p.quantity|floatformat:"2g" }}</td>
+                            <td>{{ p.amount|floatformat:"2g" }} KGS</td>
                         </tr>
                         {% empty %}
                         <tr>
@@ -61,4 +69,34 @@
         </div>
     </div>
 </div>
+
+{{ materials_data|json_script:"materials-json" }}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const materialsData = JSON.parse(document.getElementById('materials-json').textContent);
+        const materialSelect = document.querySelector('[name="raw_material"]');
+        const quantityInput = document.querySelector('[name="quantity"]');
+        const amountInput = document.querySelector('[name="amount"]');
+        const suggestionBox = document.getElementById('price-suggestion');
+        const suggestionValue = document.getElementById('suggested-value');
+
+        function updateSuggestion() {
+            const materialId = materialSelect.value;
+            const quantity = parseFloat(quantityInput.value);
+            const minPrice = materialsData[materialId];
+
+            if (materialId && !isNaN(quantity) && minPrice) {
+                const total = (minPrice * quantity).toFixed(2);
+                suggestionValue.textContent = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                suggestionBox.style.display = 'block';
+            } else {
+                suggestionBox.style.display = 'none';
+            }
+        }
+
+        materialSelect.addEventListener('change', updateSuggestion);
+        quantityInput.addEventListener('input', updateSuggestion);
+    });
+</script>
 {% endblock %}

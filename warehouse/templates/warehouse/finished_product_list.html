@@ -23,8 +23,8 @@
                 <tr>
                     <td>{{ item.name }}</td>
                     <td>{{ item.unit }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.amount }} KGS</td>
+                    <td>{{ item.quantity|floatformat:"2g" }}</td>
+                    <td>{{ item.amount|floatformat:"2g" }} KGS</td>
                     <td>
                         <a href="{% url 'finished_product_update' pk=item.pk %}" class="btn btn-sm btn-primary">✏️</a>
                         <a href="{% url 'finished_product_delete' pk=item.pk %}" class="btn btn-sm btn-danger">🗑️</a>

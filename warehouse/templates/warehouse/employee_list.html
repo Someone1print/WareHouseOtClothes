@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ item.full_name }}</td>
                     <td>{{ item.position }}</td>
-                    <td>{{ item.salary }} KGS</td>
+                    <td>{{ item.salary|floatformat:"2g" }} KGS</td>
                     <td>{{ item.phone|default:"-" }}</td>
                     <td>
                         <a href="{% url 'employee_update' pk=item.pk %}" class="btn btn-sm btn-primary">✏️</a>

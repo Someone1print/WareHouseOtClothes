@@ -21,9 +21,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Название продукции</th>
-                    <th>Произведено (всего)</th>
-                    <th>Продано (всего)</th>
-                    <th>Остаток на складе</th>
+                    <th>Ед. изм.</th>
+                    <th>Количество (Остаток)</th>
+                    <th>Сумма (KGS)</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,9 +31,9 @@
                 <tr>
                     <td>{{ row.product_id }}</td>
                     <td>{{ row.product_name }}</td>
-                    <td class="text-success">{{ row.total_produced|default:0 }}</td>
-                    <td class="text-danger">{{ row.total_sold|default:0 }}</td>
-                    <td class="fw-bold">{{ row.stock_qty|default:0 }}</td>
+                    <td>{{ row.unit_name }}</td>
+                    <td class="fw-bold text-primary">{{ row.quantity|default:0|floatformat:"2g" }}</td>
+                    <td class="text-success">{{ row.amount|default:0|floatformat:"2g" }}</td>
                 </tr>
                 {% empty %}
                 <tr>

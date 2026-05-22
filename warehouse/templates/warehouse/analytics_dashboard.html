@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="display-6 fw-bold">📈 Панель Аналитики</h2>
+</div>
+
+<!-- KPI Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-success shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="card-title text-uppercase fw-bold opacity-75">Общие доходы</h6>
+                <h3 class="mb-0">{{ total_sales|floatformat:"2g" }} KGS</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-danger shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="card-title text-uppercase fw-bold opacity-75">Общие расходы</h6>
+                <h3 class="mb-0">{{ total_expenses|floatformat:"2g" }} KGS</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="card-title text-uppercase fw-bold opacity-75">Закупка сырья</h6>
+                <h3 class="mb-0">{{ total_purchases|floatformat:"2g" }} KGS</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="card-title text-uppercase fw-bold opacity-75">Выплачено зарплат</h6>
+                <h3 class="mb-0">{{ total_salaries|floatformat:"2g" }} KGS</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Row -->
+<div class="row mb-5">
+    <div class="col-md-8">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white border-bottom-0 pt-4 pb-0">
+                <h5 class="fw-bold mb-0">Доходы vs Расходы</h5>
+            </div>
+            <div class="card-body" style="position: relative; height: 350px; width: 100%;">
+                <canvas id="financeChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white border-bottom-0 pt-4 pb-0">
+                <h5 class="fw-bold mb-0">Топ Продукции</h5>
+            </div>
+            <div class="card-body" style="position: relative; height: 350px; width: 100%;">
+                <canvas id="productsChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Detailed Data Tabs -->
+<div class="card shadow-sm mb-5 border-0">
+    <div class="card-header bg-white border-bottom pt-3 pb-3">
+        <ul class="nav nav-pills" id="analyticsTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active px-4 rounded-pill fw-medium" id="sales-tab" data-bs-toggle="pill"
+                    data-bs-target="#sales-content" type="button" role="tab" aria-controls="sales-content"
+                    aria-selected="true">🛍️ История Продаж</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link px-4 rounded-pill fw-medium" id="purchases-tab" data-bs-toggle="pill"
+                    data-bs-target="#purchases-content" type="button" role="tab" aria-controls="purchases-content"
+                    aria-selected="false">🛒 Закупки Сырья</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link px-4 rounded-pill fw-medium" id="salaries-tab" data-bs-toggle="pill"
+                    data-bs-target="#salaries-content" type="button" role="tab" aria-controls="salaries-content"
+                    aria-selected="false">💼 Выплата Зарплат</button>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body p-0">
+        <div class="tab-content" id="analyticsTabsContent">
+
+            <!-- Sales Tab -->
+            <div class="tab-pane fade show active" id="sales-content" role="tabpanel" aria-labelledby="sales-tab">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4 py-3">Дата</th>
+                            <th class="px-4 py-3">Продукция</th>
+                            <th class="px-4 py-3 text-end">Кол-во</th>
+                            <th class="px-4 py-3 text-end">Сумма (KGS)</th>
+                            <th class="px-4 py-3">Менеджер</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in sales %}
+                        <tr>
+                            <td class="px-4 py-3">{{ item.date|date:"d.m.Y H:i" }}</td>
+                            <td class="px-4 py-3 fw-medium">{{ item.product.name }}</td>
+                            <td class="px-4 py-3 text-end">{{ item.quantity|floatformat:"2g" }} {{ item.product.unit.name }}</td>
+                            <td class="px-4 py-3 text-end text-success fw-bold">{{ item.amount|floatformat:"2g" }}</td>
+                            <td class="px-4 py-3 text-muted">{{ item.employee.full_name }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="px-4 py-5 text-center text-muted">Нет данных</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Purchases Tab -->
+            <div class="tab-pane fade" id="purchases-content" role="tabpanel" aria-labelledby="purchases-tab">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4 py-3">Дата</th>
+                            <th class="px-4 py-3">Сырье</th>
+                            <th class="px-4 py-3 text-end">Кол-во</th>
+                            <th class="px-4 py-3 text-end">Сумма (KGS)</th>
+                            <th class="px-4 py-3">Сотрудник</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in purchases %}
+                        <tr>
+                            <td class="px-4 py-3">{{ item.date|date:"d.m.Y H:i" }}</td>
+                            <td class="px-4 py-3 fw-medium">{{ item.raw_material.name }}</td>
+                            <td class="px-4 py-3 text-end">{{ item.quantity|floatformat:"2g" }} {{ item.raw_material.unit.name }}</td>
+                            <td class="px-4 py-3 text-end text-danger fw-bold">-{{ item.amount|floatformat:"2g" }}</td>
+                            <td class="px-4 py-3 text-muted">{{ item.employee.full_name }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="px-4 py-5 text-center text-muted">Нет данных</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Salaries Tab -->
+            <div class="tab-pane fade" id="salaries-content" role="tabpanel" aria-labelledby="salaries-tab">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4 py-3">Дата выдачи</th>
+                            <th class="px-4 py-3">Сотрудник</th>
+                            <th class="px-4 py-3 text-end">Сумма к выдаче (KGS)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in salaries %}
+                        <tr>
+                            <td class="px-4 py-3">{{ item.date|date:"d.m.Y H:i" }}</td>
+                            <td class="px-4 py-3 fw-medium">{{ item.employee.full_name }}</td>
+                            <td class="px-4 py-3 text-end text-danger fw-bold">-{{ item.amount|floatformat:"2g" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="px-4 py-5 text-center text-muted">Нет данных</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js and Initialization -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Finance Bar Chart
+        var ctxFinance = document.getElementById('financeChart').getContext('2d');
+        var financeChart = new Chart(ctxFinance, {
+            type: 'bar',
+            data: {
+                labels: ['Общие доходы', 'Общие расходы', 'Из них: Закупки', 'Из них: Зарплаты'],
+                datasets: [{
+                    label: 'Сумма (KGS)',
+                    data: [
+                        parseFloat(('{{ total_sales|default:"0" }}').replace(/\s/g, '').replace(',', '.')),
+                        parseFloat(('{{ total_expenses|default:"0" }}').replace(/\s/g, '').replace(',', '.')),
+                        parseFloat(('{{ total_purchases|default:"0" }}').replace(/\s/g, '').replace(',', '.')),
+                        parseFloat(('{{ total_salaries|default:"0" }}').replace(/\s/g, '').replace(',', '.'))
+                    ],
+        backgroundColor: [
+        'rgba(25, 135, 84, 0.7)',  // Success
+        'rgba(220, 53, 69, 0.7)',  // Danger
+        'rgba(255, 193, 7, 0.7)',  // Warning
+        'rgba(13, 202, 240, 0.7)'  // Info
+    ],
+        borderColor: [
+        'rgba(25, 135, 84, 1)',
+        'rgba(220, 53, 69, 1)',
+        'rgba(255, 193, 7, 1)',
+        'rgba(13, 202, 240, 1)'
+    ],
+        borderWidth: 1,
+        borderRadius: 5
+                }]
+            },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false }
+        },
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+        });
+
+    // Top Products Doughnut Chart
+    var labels = {{ chart_top_products_labels|safe }};
+    var dataVals = {{ chart_top_products_data|safe }};
+
+    var ctxProducts = document.getElementById('productsChart').getContext('2d');
+
+    if (labels.length > 0) {
+        var productsChart = new Chart(ctxProducts, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dataVals,
+                    backgroundColor: [
+                        'rgba(13, 110, 253, 0.7)', // Primary
+                        'rgba(102, 16, 242, 0.7)', // Indigo
+                        'rgba(214, 51, 132, 0.7)', // Pink
+                        'rgba(25, 135, 84, 0.7)',  // Green
+                        'rgba(253, 126, 20, 0.7)'  // Orange
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                cutout: '65%'
+            }
+        });
+    } else {
+        // Placeholder if no data
+        ctxProducts.font = "14px Inter";
+        ctxProducts.fillStyle = "#6c757d";
+        ctxProducts.textAlign = "center";
+        ctxProducts.fillText("Нет данных о продажах", ctxProducts.canvas.width / 2, ctxProducts.canvas.height / 2);
+    }
+    });
+</script>
+{% endblock %}

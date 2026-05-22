@@ -1,8 +1,15 @@
 from django.urls import path
-from . import views
+from . import views, auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
+
+    # Auth
+    path('login/', auth_views.login_view, name='login'),
+    path('logout/', auth_views.logout_view, name='logout'),
+    path('accounts/', auth_views.account_list, name='account_list'),
+    path('accounts/add/', auth_views.account_create, name='account_create'),
+    path('accounts/<int:pk>/delete/', auth_views.account_delete, name='account_delete'),
     
     # Generic CRUDs
     path('units/', views.unit_list, name='unit_list'),
@@ -41,7 +48,19 @@ urlpatterns = [
     path('production/<int:pk>/delete/', views.production_delete, name='production_delete'),
 
     path('sale/add/', views.sale_create, name='sale_create'),
+    path('analytics/dashboard/', views.analytics_dashboard, name='analytics_dashboard'),
     
+    path('salaries/', views.salary_list, name='salary_list'),
+    path('salaries/add/', views.salary_create, name='salary_create'),
+    path('salaries/<int:pk>/edit/', views.salary_update, name='salary_update'),
+    path('salaries/<int:pk>/delete/', views.salary_delete, name='salary_delete'),
+
+    path('loans/', views.loan_list, name='loan_list'),
+    path('loans/add/', views.loan_create, name='loan_create'),
+    path('loans/<int:pk>/edit/', views.loan_update, name='loan_update'),
+    path('loans/<int:pk>/delete/', views.loan_delete, name='loan_delete'),
+    path('loans/<int:pk>/payoff/', views.loan_payoff, name='loan_payoff'),
+
     # Specific Logic
     path('budget/', views.budget_list, name='budget_list'),
     path('purchase/add/', views.purchase_create, name='purchase_create'),
@@ -50,4 +69,7 @@ urlpatterns = [
     path('view/raw_stock/', views.view_raw_stock, name='view_raw_stock'),
     path('view/product_stock/', views.view_product_stock, name='view_product_stock'),
     path('view/materials_needed/', views.view_materials_needed, name='view_materials_needed'),
+
+    path('recipes/', views.production_request_list, name='production_request_list'),
+    path('recipes/add/', views.production_request_create, name='production_request_create'),
 ]

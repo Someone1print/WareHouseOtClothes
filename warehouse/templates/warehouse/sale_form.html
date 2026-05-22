@@ -47,8 +47,8 @@
                         <tr>
                             <td>{{ s.date|date:"d.m.Y H:i" }}</td>
                             <td>{{ s.product.name }}</td>
-                            <td>{{ s.quantity }}</td>
-                            <td>{{ s.amount }} KGS</td>
+                            <td>{{ s.quantity|floatformat:"2g" }}</td>
+                            <td>{{ s.amount|floatformat:"2g" }} KGS</td>
                         </tr>
                         {% empty %}
                         <tr>

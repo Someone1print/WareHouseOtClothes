@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{ item.date|date:"d.m.Y H:i" }}</td>
                     <td>{{ item.product.name }}</td>
-                    <td>{{ item.quantity }} {{ item.product.unit.name }}</td>
+                    <td>{{ item.quantity|floatformat:"2g" }} {{ item.product.unit.name }}</td>
                     <td>{{ item.employee.full_name }}</td>
                     <td>
                         <a href="{% url 'production_update' pk=item.pk %}" class="btn btn-sm btn-primary">✏️</a>

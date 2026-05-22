@@ -6,7 +6,7 @@
 
 <div class="card mb-4">
     <div class="card-body">
-        <h4 class="card-title">Текущий бюджет: <span class="text-success">{{ budget.amount }}</span> KGS</h4>
+        <h4 class="card-title">Текущий бюджет: <span class="text-success">{{ budget.amount|floatformat:"2g" }}</span> KGS</h4>
         <hr>
         <form method="post" novalidate>
             {% csrf_token %}
